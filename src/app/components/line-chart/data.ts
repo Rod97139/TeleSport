@@ -16,7 +16,6 @@ export var multi = [
       }
     ]
   },
-
   {
     "name": "USA",
     "series": [

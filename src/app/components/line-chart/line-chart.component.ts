@@ -12,7 +12,7 @@ import {Color, LineChartModule, ScaleType} from "@swimlane/ngx-charts";
 
 export class LineChartComponent {
   multi: any[] | undefined;
-  view: [number, number] = [700, 300];
+  view: [number, number] = [700, 400];
 
   // options
   legend: boolean = true;
