@@ -8,10 +8,11 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import {PieChartComponent} from "./components/pie-chart/pie-chart.component";
 import {HeaderComponent} from "./components/header/header.component";
 import {FooterComponent} from "./components/footer/footer.component";
+import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, NotFoundComponent],
-  imports: [BrowserModule, AppRoutingModule, PieChartComponent, HeaderComponent, FooterComponent],
+  imports: [BrowserModule, BrowserAnimationsModule, NoopAnimationsModule, AppRoutingModule, PieChartComponent, HeaderComponent, FooterComponent],
   providers: [provideHttpClient(withInterceptorsFromDi())],
   bootstrap: [AppComponent],
 })
