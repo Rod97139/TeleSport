@@ -6,11 +6,12 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import {PieChartComponent} from "./components/pie-chart/pie-chart.component";
-import {LineChartComponent} from "./components/line-chart/line-chart.component";
+import {HeaderComponent} from "./components/header/header.component";
+import {FooterComponent} from "./components/footer/footer.component";
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, NotFoundComponent],
-  imports: [BrowserModule, AppRoutingModule, PieChartComponent, LineChartComponent],
+  imports: [BrowserModule, AppRoutingModule, PieChartComponent, HeaderComponent, FooterComponent],
   providers: [provideHttpClient(withInterceptorsFromDi())],
   bootstrap: [AppComponent],
 })
