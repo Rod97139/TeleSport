@@ -14,7 +14,7 @@ import {LoaderComponent} from "./components/loader/loader.component";
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, NotFoundComponent],
-    imports: [BrowserModule, BrowserAnimationsModule, NoopAnimationsModule, AppRoutingModule, PieChartComponent, HeaderComponent, FooterComponent, LineChartComponent, LoaderComponent],
+  imports: [BrowserModule, BrowserAnimationsModule, NoopAnimationsModule, AppRoutingModule, PieChartComponent, HeaderComponent, FooterComponent, LineChartComponent, LoaderComponent, HeaderComponent],
   providers: [provideHttpClient(withInterceptorsFromDi())],
   bootstrap: [AppComponent],
 })
