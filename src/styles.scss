@@ -1,1 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
+// Colors
+//$primary-color: #007bff;
+//$secondary-color: #6c757d;
+//$background-color: #f8f9fa;
+//$text-color: #343a40;
+
+// Spacing (marges, paddings, etc.)
+//$spacer: 1rem;
+//$spacer-sm: 0.5rem;
+//$spacer-lg: 2rem;
+
+// Fonts
+//$font-family-sans: 'Roboto', Arial, sans-serif;
+//$font-family-mono: 'Courier New', monospace;
+
+$font-size-base: 16px;
+$font-size-sm: 14px;
+$font-size-lg: 18px;
+
+/* Basic Reset */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%; // 16px par défaut
+  line-height: 1.6;
+}
+
+body {
+  margin: 0;
+  //font-family: $font-family-sans;
+  font-size: $font-size-base;
+  //color: $text-color;
+  //background-color: $background-color;
+}

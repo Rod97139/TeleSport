@@ -1,0 +1,17 @@
+.subtitle-component {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 1.5em;
+  border: 2px solid #04838f;
+  padding: 10px;
+  width: 230px;
+  border-radius: 7px;
+  .subtitle-component-name {
+    color: #6d6d6d;
+  }
+  .subtitle-component-count {
+    font-weight: bold;
+  }
+}

@@ -1,20 +1,25 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {LineChartComponent} from "../../components/line-chart/line-chart.component";
 import {firstValueFrom, Observable, of} from "rxjs";
 import {Olympic} from "../../core/models/Olympic";
 import {OlympicService} from "../../core/services/olympic.service";
 import {ActivatedRoute} from "@angular/router";
 import {LoaderComponent} from "../../components/loader/loader.component";
+import {TitleComponent} from "../../components/title/title.component";
+import {SubtitleComponent} from "../../components/subtitle/subtitle.component";
 
 @Component({
   selector: 'app-details',
   standalone: true,
   imports: [
     LineChartComponent,
-    LoaderComponent
+    LoaderComponent,
+    TitleComponent,
+    SubtitleComponent
   ],
   templateUrl: './details.component.html',
-  styleUrl: './details.component.scss'
+  styleUrl: './details.component.scss',
+  encapsulation: ViewEncapsulation.None
 })
 export class DetailsComponent implements OnInit, OnDestroy {
   public olympics$: Observable<Olympic[] | null> = of(null);
@@ -36,7 +41,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
     this.isLoading = false;
   }
 
-  convertOlympicsToChartData(olympics: Olympic[] | null, countryId: number): { name: string | undefined, series: { name: string, value: number }[] | undefined }[] | undefined {
+  convertOlympicsToChartData(olympics: Olympic[] | null, countryId: number): { name: string | undefined, series: { name: string, value: number, extra: string }[] | undefined, totalMedals: number, totalAthletes: number }[] | undefined {
     const selectedCountry = olympics?.find(olympic => olympic.id === countryId);
     if (selectedCountry) {
       return [
@@ -44,8 +49,11 @@ export class DetailsComponent implements OnInit, OnDestroy {
           name: selectedCountry?.country,
           series: selectedCountry?.participations.map(participation => ({
             name: participation.year.toString(),
-            value: participation.medalsCount
-          }))
+            value: participation.medalsCount,
+            extra: participation.city
+          })),
+          totalMedals: selectedCountry?.participations.reduce((acc, curr) => acc + curr.medalsCount, 0),
+          totalAthletes: selectedCountry?.participations.reduce((acc, curr) => acc + curr.athleteCount, 0)
         }
       ];
     }

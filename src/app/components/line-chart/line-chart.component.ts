@@ -1,27 +1,27 @@
 import {Component, HostListener, Input, OnInit} from '@angular/core';
-import {Color, LineChartModule, ScaleType} from "@swimlane/ngx-charts";
+import {Color, LineChartModule, ScaleType, TooltipModule} from "@swimlane/ngx-charts";
 
 @Component({
   selector: 'app-line-chart',
   standalone: true,
-  imports: [LineChartModule],
+  imports: [LineChartModule, TooltipModule],
   templateUrl: './line-chart.component.html',
   styleUrl: './line-chart.component.scss'
 })
 
 export class LineChartComponent implements OnInit {
   view: [number, number] = [700, 400];
-  @Input() data: { name: string, value: number }[] | undefined;
+  @Input() data: { name: string, value: number, extra: string }[] | undefined;
 
   // options
-  legend: boolean = true;
+  legend: boolean = false;
   animations: boolean = true;
   xAxis: boolean = true;
   yAxis: boolean = true;
   showYAxisLabel: boolean = true;
   showXAxisLabel: boolean = true;
-  xAxisLabel: string = 'Year';
-  yAxisLabel: string = 'Population';
+  xAxisLabel: string = 'Dates';
+  yAxisLabel: string = 'Number of Medals';
   timeline: boolean = true;
 
   colorScheme: Color = {
@@ -41,7 +41,7 @@ export class LineChartComponent implements OnInit {
   }
 
   updateViewDimensions(): void {
-    this.view = [window.innerWidth, window.innerHeight * 0.7];
+    this.view = [window.innerWidth * 0.8, window.innerHeight * 0.7];
   }
 
   onSelect(data: any): void {
