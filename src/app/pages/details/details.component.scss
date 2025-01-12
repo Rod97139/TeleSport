@@ -1,0 +1,22 @@
+.details-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  .details-subtitles {
+    display: flex;
+    gap: 10px;
+    & > app-subtitle > .subtitle-component {
+      width: 270px;
+    }
+    @media screen and (max-width: 854px) {
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+  app-line-chart {
+      position: relative;
+      right: 31px;
+  }
+}

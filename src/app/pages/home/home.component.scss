@@ -1,0 +1,19 @@
+.home-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  .home-data-loaded {
+    color: transparent;
+    position: absolute;
+  }
+  .home-subtitles {
+    display: flex;
+    gap: 10px;
+    @media screen and (max-width: 486px) {
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+}

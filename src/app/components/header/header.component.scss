@@ -1,0 +1,21 @@
+header {
+  background-color: #97c3dc;
+  color: black;
+  padding: 1rem 2rem;
+  position: relative;
+  z-index: 1000;
+  overflow: visible;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-title {
+  font-size: 1.5rem;
+  @media screen and (max-width: 486px) {
+    font-size: 5vw;
+  }
+}

@@ -1,0 +1,14 @@
+@if (isLoading) {
+  <app-loader/>
+}
+@else {
+  <section class="details-content">
+    <app-title [title]="chartData ? chartData[0].name : ''"></app-title>
+    <div class="details-subtitles">
+      <app-subtitle subtitle="Number of Entries" count=3 ></app-subtitle>
+      <app-subtitle subtitle="Total Number of Medals" [count]="chartData ? chartData[0].totalMedals : ''" ></app-subtitle>
+      <app-subtitle subtitle="Total Number of Athletes" [count]="chartData ? chartData[0].totalAthletes : ''" ></app-subtitle>
+    </div>
+    <app-line-chart [data]="chartData" ></app-line-chart>
+  </section>
+}

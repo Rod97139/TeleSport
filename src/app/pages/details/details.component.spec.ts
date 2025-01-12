@@ -1,29 +1,30 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HomeComponent } from './home.component';
+import { DetailsComponent } from './details.component';
 import {provideHttpClientTesting} from "@angular/common/http/testing";
 import {HttpClient, HttpHandler} from "@angular/common/http";
 import {LoaderComponent} from "../../components/loader/loader.component";
+import {ActivatedRoute} from "@angular/router";
+import {ActivatedRouteStub} from "../../app.component.spec";
 
-describe('HomeComponent', () => {
-  let component: HomeComponent;
-  let fixture: ComponentFixture<HomeComponent>;
+
+describe('DetailsComponent', () => {
+  let component: DetailsComponent;
+  let fixture: ComponentFixture<DetailsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        LoaderComponent
-        ],
-      declarations: [ HomeComponent ],
+      imports: [DetailsComponent, LoaderComponent],
       providers: [
         provideHttpClientTesting(),
         HttpClient,
-        HttpHandler
+        HttpHandler,
+        { provide: ActivatedRoute, useClass: ActivatedRouteStub  }
       ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(HomeComponent);
+    fixture = TestBed.createComponent(DetailsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
