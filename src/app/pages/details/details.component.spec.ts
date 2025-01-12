@@ -5,7 +5,6 @@ import {provideHttpClientTesting} from "@angular/common/http/testing";
 import {HttpClient, HttpHandler} from "@angular/common/http";
 import {LoaderComponent} from "../../components/loader/loader.component";
 import {ActivatedRoute} from "@angular/router";
-import {of} from "rxjs";
 import {ActivatedRouteStub} from "../../app.component.spec";
 
 

@@ -1,10 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {LineChartComponent} from "../../components/line-chart/line-chart.component";
-import {firstValueFrom, lastValueFrom, Observable, of} from "rxjs";
+import {firstValueFrom, Observable, of} from "rxjs";
 import {Olympic} from "../../core/models/Olympic";
 import {OlympicService} from "../../core/services/olympic.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {PieChartComponent} from "../../components/pie-chart/pie-chart.component";
+import {ActivatedRoute} from "@angular/router";
 import {LoaderComponent} from "../../components/loader/loader.component";
 
 @Component({
@@ -12,7 +11,6 @@ import {LoaderComponent} from "../../components/loader/loader.component";
   standalone: true,
   imports: [
     LineChartComponent,
-    PieChartComponent,
     LoaderComponent
   ],
   templateUrl: './details.component.html',

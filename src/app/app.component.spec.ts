@@ -1,10 +1,9 @@
 import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import {RouterModule} from "@angular/router";
 import {HomeComponent} from "./pages/home/home.component";
 import {DetailsComponent} from "./pages/details/details.component";
-import {HttpClientTestingModule, provideHttpClientTesting} from "@angular/common/http/testing";
+import {provideHttpClientTesting} from "@angular/common/http/testing";
 import {HttpClient, HttpHandler} from "@angular/common/http";
 import {HeaderComponent} from "./components/header/header.component";
 import {FooterComponent} from "./components/footer/footer.component";

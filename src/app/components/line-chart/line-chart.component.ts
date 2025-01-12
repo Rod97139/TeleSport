@@ -15,7 +15,6 @@ export class LineChartComponent {
 
   // options
   legend: boolean = true;
-  showLabels: boolean = true;
   animations: boolean = true;
   xAxis: boolean = true;
   yAxis: boolean = true;
