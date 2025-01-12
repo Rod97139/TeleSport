@@ -13,10 +13,10 @@
     @media screen and (max-width: 854px) {
       flex-direction: column;
       gap: 20px;
-      & > app-subtitle > .subtitle-component {
-        width: 100%;
-      }
-
     }
+  }
+  app-line-chart {
+      position: relative;
+      right: 31px;
   }
 }

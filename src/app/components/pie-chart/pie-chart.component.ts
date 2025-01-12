@@ -39,7 +39,10 @@ export class PieChartComponent implements OnInit {
   }
 
   updateViewDimensions(): void {
-    this.view = [window.innerWidth, window.innerHeight * 0.7];
+    const height = (window.innerWidth < 643)
+      ? window.innerWidth
+      : window.innerHeight * 0.7;
+    this.view = [window.innerWidth, height];
   }
 
   onSelect(data: any): void {

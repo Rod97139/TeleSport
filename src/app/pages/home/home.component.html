@@ -2,14 +2,16 @@
   <app-loader/>
 }
 @else {
-  <app-title title="Medals per Country"></app-title>
-  <p>{{ (olympics$ | async)?.length }} data loaded</p>
-  <div class="home-subtitles">
-    <app-subtitle subtitle="Number of JOs" count=3 ></app-subtitle>
-    <app-subtitle subtitle="Number of Countries" count=5 ></app-subtitle>
-  </div>
-  <app-pie-chart
-    [data]="chartData"
-    [onClickFunction]="onClickFunction"
-  ></app-pie-chart>
+  <section class="home-content">
+    <app-title title="Medals per Country"></app-title>
+    <p>{{ (olympics$ | async)?.length }} data loaded</p>
+    <div class="home-subtitles">
+      <app-subtitle subtitle="Number of JOs" count=3 ></app-subtitle>
+      <app-subtitle subtitle="Number of Countries" count=5 ></app-subtitle>
+    </div>
+    <app-pie-chart
+      [data]="chartData"
+      [onClickFunction]="onClickFunction"
+    ></app-pie-chart>
+  </section>
 }
