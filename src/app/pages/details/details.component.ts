@@ -30,13 +30,13 @@ export class DetailsComponent implements OnInit, OnDestroy {
     const countryId = Number(this.route.snapshot.paramMap.get('id'));
     this.olympics$ = this.olympicService.getOlympics();
     this.chartDataSubscribtion = this.olympics$.subscribe(olympics => {
-      this.chartData = this.transformOlympicsToChartData(olympics, countryId)
+      this.chartData = this.convertOlympicsToChartData(olympics, countryId)
     });
     await firstValueFrom(this.olympics$);
     this.isLoading = false;
   }
 
-  transformOlympicsToChartData(olympics: Olympic[] | null, countryId: number): { name: string | undefined, series: { name: string, value: number }[] | undefined }[] | undefined {
+  convertOlympicsToChartData(olympics: Olympic[] | null, countryId: number): { name: string | undefined, series: { name: string, value: number }[] | undefined }[] | undefined {
     const selectedCountry = olympics?.find(olympic => olympic.id === countryId);
     if (selectedCountry) {
       return [

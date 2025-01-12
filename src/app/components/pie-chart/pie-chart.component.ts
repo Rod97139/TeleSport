@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, HostListener, Input, OnInit} from '@angular/core';
 import {Color, LegendPosition, PieChartModule, ScaleType} from '@swimlane/ngx-charts';
 
 @Component({
@@ -9,14 +9,15 @@ import {Color, LegendPosition, PieChartModule, ScaleType} from '@swimlane/ngx-ch
   styleUrl: './pie-chart.component.scss'
 })
 
-export class PieChartComponent {
+export class PieChartComponent implements OnInit {
   @Input() data: { id: number, name: string, value: number }[] | undefined;
   @Input() onClickFunction: ((id: number | undefined) => void) | undefined ;
   view: [number, number] = [700, 400];
 
+
   // options
   gradient: boolean = true;
-  showLegend: boolean = true;
+  showLegend: boolean = false;
   showLabels: boolean = true;
   isDoughnut: boolean = false;
   legendPosition: LegendPosition = LegendPosition.Below;
@@ -27,6 +28,19 @@ export class PieChartComponent {
     group: ScaleType.Linear,
     domain: ['#956065', '#b8cbe7', '#89a1db', '#793d52', '#9780a1']
   };
+
+  ngOnInit(): void {
+    this.updateViewDimensions();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onWindowResize(): void {
+    this.updateViewDimensions();
+  }
+
+  updateViewDimensions(): void {
+    this.view = [window.innerWidth, window.innerHeight * 0.7];
+  }
 
   onSelect(data: any): void {
     const selectedItem = this.data?.find(item => item.name === data.name);

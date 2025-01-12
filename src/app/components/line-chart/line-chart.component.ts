@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, HostListener, Input, OnInit} from '@angular/core';
 import {Color, LineChartModule, ScaleType} from "@swimlane/ngx-charts";
 
 @Component({
@@ -9,7 +9,7 @@ import {Color, LineChartModule, ScaleType} from "@swimlane/ngx-charts";
   styleUrl: './line-chart.component.scss'
 })
 
-export class LineChartComponent {
+export class LineChartComponent implements OnInit {
   view: [number, number] = [700, 400];
   @Input() data: { name: string, value: number }[] | undefined;
 
@@ -30,6 +30,19 @@ export class LineChartComponent {
     group: ScaleType.Linear,
     domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
   };
+
+  ngOnInit(): void {
+    this.updateViewDimensions();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onWindowResize(): void {
+    this.updateViewDimensions();
+  }
+
+  updateViewDimensions(): void {
+    this.view = [window.innerWidth, window.innerHeight * 0.7];
+  }
 
   onSelect(data: any): void {
     console.log('Item clicked', JSON.parse(JSON.stringify(data)));

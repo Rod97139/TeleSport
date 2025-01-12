@@ -20,13 +20,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   async ngOnInit(): Promise<void> {
     this.olympics$ = this.olympicService.getOlympics();
     this.chartDataSubscribtion = this.olympics$.subscribe(olympics => {
-      this.chartData = this.transformOlympicsToChartData(olympics);
+      this.chartData = this.convertOlympicsToChartData(olympics);
     });
     await firstValueFrom(this.olympics$);
     this.isLoading = false;
   }
 
-  transformOlympicsToChartData(olympics: Olympic[] | null): { id: number, name: string, value: number }[] | undefined {
+  convertOlympicsToChartData(olympics: Olympic[] | null): { id: number, name: string, value: number }[] | undefined {
     return olympics?.map((olympic: Olympic) => {
       const totalMedals = olympic.participations.reduce(
         (sum: number, participation: { medalsCount: number }) => sum + participation.medalsCount,

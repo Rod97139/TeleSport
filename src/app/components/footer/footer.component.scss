@@ -3,58 +3,13 @@ footer {
   color: white;
   padding: 1.5rem 2rem;
   text-align: center;
+  min-height: 200px;
 }
-
-.footer-content {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  justify-content: center;
-  align-items: center;
-}
-
-.footer-logo a {
-  font-weight: bold;
-  font-size: 1.5rem;
-  color: white;
-  text-decoration: none;
-}
-
-.footer-links {
-  display: flex;
-  list-style: none;
-  gap: 1.5rem;
-  padding: 0;
-  margin: 0;
-}
-
-.footer-links li a {
-  color: white;
-  text-decoration: none;
-  font-size: 0.9rem;
-}
-
-.footer-socials {
-  display: flex;
-  gap: 1rem;
-}
-
-.footer-socials a {
-  color: white;
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition: color 0.3s;
-}
-
-.footer-socials a:hover {
-  color: #1e90ff; /* Couleur pour le hover */
-}
-
 .footer-bottom {
-  margin-top: 1rem;
+  margin-top: 180px; /* Place cet élément en bas automatiquement */
   font-size: 0.8rem;
-  border-top: 1px solid #444;
   padding-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 @media (max-width: 768px) {
@@ -65,5 +20,35 @@ footer {
   .footer-links {
     flex-direction: column;
     gap: 0.5rem;
+  }
+}
+
+.footer {
+  background-image:
+    linear-gradient(to right, #98c4dd, rgba(143, 199, 230, 0) calc(280vw)), /* Dégradé gauche proportionnel */
+    url('/assets/images/banner.png'),
+    linear-gradient(to left, #98c4dd, rgba(143, 199, 230, 0) calc(280vw)); /* Dégradé droit proportionnel */
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #98c4dd;
+
+  @media (max-width: 650px) {
+    background-size: cover;
+    background-position: calc(100% * 0.8) center;
+  }
+
+
+  @media (max-width: 768px) {
+    background-size: cover;
+    height: 150px;
+    .footer-bottom {
+      margin-top: 150px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    background-size: cover;
+    height: 150px;
   }
 }
