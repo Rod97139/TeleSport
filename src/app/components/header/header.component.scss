@@ -2,6 +2,9 @@ header {
   background-color: #333;
   color: white;
   padding: 1rem 2rem;
+  position: relative;
+  z-index: 1000;
+  overflow: visible;
 }
 
 .navbar {
@@ -43,5 +46,10 @@ header {
 
   .nav-links.active {
     display: flex;
+    position: absolute;
+    //top: 95%;
+    //left: 0;
+    top: 20px;
+    z-index: 1000;
   }
 }
