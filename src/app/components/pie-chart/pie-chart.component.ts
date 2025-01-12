@@ -14,8 +14,6 @@ export class PieChartComponent {
   @Input() onClickFunction: ((id: number | undefined) => void) | undefined ;
   view: [number, number] = [700, 400];
 
-  constructor() {}
-
   // options
   gradient: boolean = true;
   showLegend: boolean = true;

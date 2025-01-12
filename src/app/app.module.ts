@@ -9,10 +9,12 @@ import {PieChartComponent} from "./components/pie-chart/pie-chart.component";
 import {HeaderComponent} from "./components/header/header.component";
 import {FooterComponent} from "./components/footer/footer.component";
 import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
+import {LineChartComponent} from "./components/line-chart/line-chart.component";
+import {LoaderComponent} from "./components/loader/loader.component";
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, NotFoundComponent],
-  imports: [BrowserModule, BrowserAnimationsModule, NoopAnimationsModule, AppRoutingModule, PieChartComponent, HeaderComponent, FooterComponent],
+    imports: [BrowserModule, BrowserAnimationsModule, NoopAnimationsModule, AppRoutingModule, PieChartComponent, HeaderComponent, FooterComponent, LineChartComponent, LoaderComponent],
   providers: [provideHttpClient(withInterceptorsFromDi())],
   bootstrap: [AppComponent],
 })

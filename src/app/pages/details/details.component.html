@@ -1,5 +1,8 @@
-<p>details works!</p>
-
-
-
-<app-line-chart></app-line-chart>
+@if (isLoading) {
+  <app-loader/>
+}
+@else {
+  <app-line-chart
+    [data]="chartData"
+  ></app-line-chart>
+}
