@@ -7,6 +7,7 @@ import {ActivatedRoute} from "@angular/router";
 import {LoaderComponent} from "../../components/loader/loader.component";
 import {TitleComponent} from "../../components/title/title.component";
 import {SubtitleComponent} from "../../components/subtitle/subtitle.component";
+import {LineChartData} from "../../core/models/LineChartData";
 
 @Component({
   selector: 'app-details',
@@ -23,7 +24,7 @@ import {SubtitleComponent} from "../../components/subtitle/subtitle.component";
 })
 export class DetailsComponent implements OnInit, OnDestroy {
   public olympics$: Observable<Olympic[] | null> = of(null);
-  chartData: any[] | undefined = [];
+  chartData: LineChartData[] | undefined = [];
   chartDataSubscribtion: any;
   isLoading = true;
 
@@ -41,7 +42,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
     this.isLoading = false;
   }
 
-  convertOlympicsToChartData(olympics: Olympic[] | null, countryId: number): { name: string | undefined, series: { name: string, value: number, extra: string }[] | undefined, totalMedals: number, totalAthletes: number }[] | undefined {
+  convertOlympicsToChartData(olympics: Olympic[] | null, countryId: number): LineChartData[] | undefined {
     const selectedCountry = olympics?.find(olympic => olympic.id === countryId);
     if (selectedCountry) {
       return [

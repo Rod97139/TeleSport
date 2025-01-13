@@ -1,5 +1,6 @@
 import {Component, HostListener, Input, OnInit} from '@angular/core';
 import {Color, LineChartModule, ScaleType, TooltipModule} from "@swimlane/ngx-charts";
+import {LineChartData} from "../../core/models/LineChartData";
 
 @Component({
   selector: 'app-line-chart',
@@ -10,8 +11,9 @@ import {Color, LineChartModule, ScaleType, TooltipModule} from "@swimlane/ngx-ch
 })
 
 export class LineChartComponent implements OnInit {
+
+  @Input() data: LineChartData[] | undefined;
   view: [number, number] = [700, 400];
-  @Input() data: { name: string, value: number, extra: string }[] | undefined;
 
   // options
   legend: boolean = false;
@@ -42,17 +44,5 @@ export class LineChartComponent implements OnInit {
 
   updateViewDimensions(): void {
     this.view = [window.innerWidth * 0.8, window.innerHeight * 0.7];
-  }
-
-  onSelect(data: any): void {
-    console.log('Item clicked', JSON.parse(JSON.stringify(data)));
-  }
-
-  onActivate(data: any): void {
-    console.log('Activate', JSON.parse(JSON.stringify(data)));
-  }
-
-  onDeactivate(data: any): void {
-    console.log('Deactivate', JSON.parse(JSON.stringify(data)));
   }
 }

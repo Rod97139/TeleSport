@@ -1,8 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {firstValueFrom, Observable, of} from 'rxjs';
+import {firstValueFrom, Observable, of, Subscription} from 'rxjs';
 import { Router } from '@angular/router';
 import { OlympicService } from 'src/app/core/services/olympic.service';
 import {Olympic} from "../../core/models/Olympic";
+import {PieChartData} from "../../core/models/PieChartData";
 
 @Component({
   selector: 'app-home',
@@ -11,8 +12,8 @@ import {Olympic} from "../../core/models/Olympic";
 })
 export class HomeComponent implements OnInit, OnDestroy {
   public olympics$: Observable<Olympic[] | null> = of(null);
-  chartData: any[] | undefined = [];
-  chartDataSubscribtion: any;
+  chartData: PieChartData[] | undefined;
+  chartDataSubscribtion!: Subscription;
   isLoading = true;
 
   constructor(private olympicService: OlympicService, private router: Router) {}
@@ -26,7 +27,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.isLoading = false;
   }
 
-  convertOlympicsToChartData(olympics: Olympic[] | null): { id: number, name: string, value: number }[] | undefined {
+  convertOlympicsToChartData(olympics: Olympic[] | null): PieChartData[] | undefined {
     return olympics?.map((olympic: Olympic) => {
       const totalMedals = olympic.participations.reduce(
         (sum: number, participation: { medalsCount: number }) => sum + participation.medalsCount,

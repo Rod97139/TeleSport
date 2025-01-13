@@ -12,6 +12,8 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
+`ng build --base-href /java-angular/telesport/ --output-path=dist/telesport`
+
 ## Where to start
 
 As you can see, an architecture has already been defined for the project. It is just a suggestion, you can choose to use your own. The predefined architecture includes (in addition to the default angular architecture) the following:
