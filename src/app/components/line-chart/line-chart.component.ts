@@ -25,6 +25,8 @@ export class LineChartComponent implements OnInit {
   xAxisLabel: string = 'Dates';
   yAxisLabel: string = 'Number of Medals';
   timeline: boolean = true;
+  yScaleMin: number = 0;
+  yScaleMax: number = 130;
 
   colorScheme: Color = {
     name: 'test',
@@ -43,6 +45,6 @@ export class LineChartComponent implements OnInit {
   }
 
   updateViewDimensions(): void {
-    this.view = [window.innerWidth * 0.8, window.innerHeight * 0.7];
+    this.view = [window.innerWidth * 0.6, ((window.innerHeight > 590) ? (window.innerHeight * 0.478) : 400)];
   }
 }
