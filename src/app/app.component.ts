@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
 
   constructor(private olympicService: OlympicService) {}
 
+  // take(1) will complete the observable after the first value without unsubscribing
   ngOnInit(): void {
     this.olympicService.loadInitialData().pipe(take(1)).subscribe();
   }

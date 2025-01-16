@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.isLoading = false;
   }
 
+  // convert data from service to chart data
   convertOlympicsToChartData(olympics: Olympic[] | null): PieChartData[] | undefined {
     return olympics?.map((olympic: Olympic) => {
       const totalMedals = olympic.participations.reduce(
@@ -45,6 +46,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.chartDataSubscribtion.unsubscribe();
   }
 
+  // function to navigate to details with id in template's click event
   onClickFunction = (id: number | undefined) => {
     this.router.navigate(['/details', id]);
   }

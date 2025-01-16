@@ -12,10 +12,4 @@ import {NgOptimizedImage} from "@angular/common";
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
-export class HeaderComponent {
-  menuOpen = false;
-
-  toggleMenu() {
-    this.menuOpen = !this.menuOpen;
-  }
-}
+export class HeaderComponent {}
