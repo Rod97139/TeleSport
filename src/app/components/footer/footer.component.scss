@@ -1,32 +1,18 @@
 footer {
   background-color: #333;
   color: white;
-  padding: 1.5rem 2rem;
   text-align: center;
-  min-height: 200px;
+  height: 120px;
+  margin-bottom: 0;
 }
-.footer-bottom {
-  margin-top: 180px; /* Place cet élément en bas automatiquement */
-  font-size: 0.8rem;
-  padding-top: 1rem;
-  margin-bottom: 1rem;
-}
-
-@media (max-width: 768px) {
-  .footer-content {
-    flex-direction: column;
-    text-align: center;
-  }
-  .footer-links {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-}
+//.footer-bottom {
+//  margin-bottom: 1rem;
+//}
 
 .footer {
   background-image:
     linear-gradient(to right, #98c4dd, rgba(143, 199, 230, 0) calc(280vw)), /* Dégradé gauche proportionnel */
-    url('/assets/images/banner.png'),
+    url('https://rodolphe.mingo.qc.lu/java-angular/telesport/assets/images/banner.png'),
     linear-gradient(to left, #98c4dd, rgba(143, 199, 230, 0) calc(280vw)); /* Dégradé droit proportionnel */
   background-size: contain;
   background-position: center;
@@ -41,14 +27,11 @@ footer {
 
   @media (max-width: 768px) {
     background-size: cover;
-    height: 150px;
-    .footer-bottom {
-      margin-top: 120px;
-    }
+    height: 100px;
   }
 
   @media (max-width: 480px) {
     background-size: cover;
-    height: 150px;
+    min-height: 100px;
   }
 }

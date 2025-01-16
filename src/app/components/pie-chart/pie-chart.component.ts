@@ -1,5 +1,7 @@
 import {Component, HostListener, Input, OnInit} from '@angular/core';
 import {Color, LegendPosition, PieChartModule, ScaleType} from '@swimlane/ngx-charts';
+import {PieChartData} from "../../core/models/PieChartData";
+import {EventObject} from "../../core/models/EventObject";
 
 @Component({
   selector: 'app-pie-chart',
@@ -10,10 +12,10 @@ import {Color, LegendPosition, PieChartModule, ScaleType} from '@swimlane/ngx-ch
 })
 
 export class PieChartComponent implements OnInit {
-  @Input() data: { id: number, name: string, value: number }[] | undefined;
+
+  @Input() data: PieChartData[] | undefined;
   @Input() onClickFunction: ((id: number | undefined) => void) | undefined ;
   view: [number, number] = [700, 400];
-
 
   // options
   gradient: boolean = true;
@@ -39,27 +41,18 @@ export class PieChartComponent implements OnInit {
   }
 
   updateViewDimensions(): void {
-    const height = (window.innerWidth < 643)
+    const height: number = (window.innerWidth < 643)
       ? window.innerWidth
-      : window.innerHeight * 0.7;
+      : window.innerHeight * 0.5;
     this.view = [window.innerWidth, height];
   }
 
-  onSelect(data: any): void {
-    const selectedItem = this.data?.find(item => item.name === data.name);
+  onSelect($event: EventObject): void {
+    const selectedItem = this.data?.find(item => item.name === $event.name);
       console.log('Selected item ID:', selectedItem?.id);
     if (this.onClickFunction) {
       this.onClickFunction(selectedItem?.id);
     }
-    console.log('Item clicked', JSON.parse(JSON.stringify(data)));
-  }
-
-  onActivate(data: any): void {
-    console.log('Activate', JSON.parse(JSON.stringify(data)));
-  }
-
-  onDeactivate(data: any): void {
-    console.log('Deactivate', JSON.parse(JSON.stringify(data)));
   }
 }
 

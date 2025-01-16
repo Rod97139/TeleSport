@@ -1,12 +1,13 @@
 import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {LineChartComponent} from "../../components/line-chart/line-chart.component";
-import {firstValueFrom, Observable, of} from "rxjs";
+import {filter, firstValueFrom, Observable, of} from "rxjs";
 import {Olympic} from "../../core/models/Olympic";
 import {OlympicService} from "../../core/services/olympic.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {LoaderComponent} from "../../components/loader/loader.component";
 import {TitleComponent} from "../../components/title/title.component";
 import {SubtitleComponent} from "../../components/subtitle/subtitle.component";
+import {LineChartData} from "../../core/models/LineChartData";
 
 @Component({
   selector: 'app-details',
@@ -23,11 +24,11 @@ import {SubtitleComponent} from "../../components/subtitle/subtitle.component";
 })
 export class DetailsComponent implements OnInit, OnDestroy {
   public olympics$: Observable<Olympic[] | null> = of(null);
-  chartData: any[] | undefined = [];
+  chartData: LineChartData[] | undefined = [];
   chartDataSubscribtion: any;
   isLoading = true;
 
-  constructor(private olympicService: OlympicService, private route: ActivatedRoute) {
+  constructor(private olympicService: OlympicService, private route: ActivatedRoute, private router: Router) {
 
   }
 
@@ -37,11 +38,14 @@ export class DetailsComponent implements OnInit, OnDestroy {
     this.chartDataSubscribtion = this.olympics$.subscribe(olympics => {
       this.chartData = this.convertOlympicsToChartData(olympics, countryId)
     });
-    await firstValueFrom(this.olympics$);
+    await firstValueFrom(this.olympics$.pipe(filter(data => data !== null && data !== undefined)));
+    if (!this.chartData) {
+      await this.router.navigate(['/not-found']);
+    }
     this.isLoading = false;
   }
 
-  convertOlympicsToChartData(olympics: Olympic[] | null, countryId: number): { name: string | undefined, series: { name: string, value: number, extra: string }[] | undefined, totalMedals: number, totalAthletes: number }[] | undefined {
+  convertOlympicsToChartData(olympics: Olympic[] | null, countryId: number): LineChartData[] | undefined {
     const selectedCountry = olympics?.find(olympic => olympic.id === countryId);
     if (selectedCountry) {
       return [
