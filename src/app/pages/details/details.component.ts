@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {LineChartComponent} from "../../components/line-chart/line-chart.component";
-import {filter, firstValueFrom, Observable, of} from "rxjs";
+import {filter, firstValueFrom, Observable, of, Subscription} from "rxjs";
 import {Olympic} from "../../core/models/Olympic";
 import {OlympicService} from "../../core/services/olympic.service";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -22,15 +22,14 @@ import {LineChartData} from "../../core/models/LineChartData";
   styleUrl: './details.component.scss',
   encapsulation: ViewEncapsulation.None
 })
+
 export class DetailsComponent implements OnInit, OnDestroy {
   public olympics$: Observable<Olympic[] | null> = of(null);
   chartData: LineChartData[] | undefined = [];
-  chartDataSubscribtion: any;
+  chartDataSubscribtion!: Subscription;
   isLoading = true;
 
-  constructor(private olympicService: OlympicService, private route: ActivatedRoute, private router: Router) {
-
-  }
+  constructor(private olympicService: OlympicService, private route: ActivatedRoute, private router: Router) {}
 
   async ngOnInit(): Promise<void> {
     const countryId = Number(this.route.snapshot.paramMap.get('id'));
@@ -38,6 +37,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
     this.chartDataSubscribtion = this.olympics$.subscribe(olympics => {
       this.chartData = this.convertOlympicsToChartData(olympics, countryId)
     });
+    // wait for data to be loaded and not being null or undefined
     await firstValueFrom(this.olympics$.pipe(filter(data => data !== null && data !== undefined)));
     if (!this.chartData) {
       await this.router.navigate(['/not-found']);
@@ -45,6 +45,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
     this.isLoading = false;
   }
 
+  // convert data from service to chart data
   convertOlympicsToChartData(olympics: Olympic[] | null, countryId: number): LineChartData[] | undefined {
     const selectedCountry = olympics?.find(olympic => olympic.id === countryId);
     if (selectedCountry) {

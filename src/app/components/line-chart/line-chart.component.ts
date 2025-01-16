@@ -32,18 +32,20 @@ export class LineChartComponent implements OnInit {
     name: 'test',
     selectable: true,
     group: ScaleType.Linear,
-    domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
+    domain: ['#905e70', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
   };
 
   ngOnInit(): void {
     this.updateViewDimensions();
   }
 
+  // function to update chart's view dimensions on window resize event listener angular built-in function
   @HostListener('window:resize', ['$event'])
   onWindowResize(): void {
     this.updateViewDimensions();
   }
 
+  // function to update chart's view dimensions on window resize event listener and on init component
   updateViewDimensions(): void {
     this.view = [window.innerWidth * 0.6, ((window.innerHeight > 590) ? (window.innerHeight * 0.478) : 400)];
   }

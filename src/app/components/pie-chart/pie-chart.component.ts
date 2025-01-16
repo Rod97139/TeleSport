@@ -35,11 +35,13 @@ export class PieChartComponent implements OnInit {
     this.updateViewDimensions();
   }
 
+  // function to update chart's view dimensions on window resize event listener angular built-in function
   @HostListener('window:resize', ['$event'])
   onWindowResize(): void {
     this.updateViewDimensions();
   }
 
+  // function to update chart's view dimensions on window resize event listener and on init component
   updateViewDimensions(): void {
     const height: number = (window.innerWidth < 643)
       ? window.innerWidth
@@ -47,9 +49,9 @@ export class PieChartComponent implements OnInit {
     this.view = [window.innerWidth, height];
   }
 
+  // function to navigate to details with id in template's click event retrieve from parent component
   onSelect($event: EventObject): void {
     const selectedItem = this.data?.find(item => item.name === $event.name);
-      console.log('Selected item ID:', selectedItem?.id);
     if (this.onClickFunction) {
       this.onClickFunction(selectedItem?.id);
     }
