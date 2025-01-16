@@ -25,7 +25,7 @@ export class LineChartComponent implements OnInit {
   xAxisLabel: string = 'Dates';
   yAxisLabel: string = 'Number of Medals';
   timeline: boolean = true;
-  yScaleMin: number = 0;
+  yScaleMin: number = 10;
   yScaleMax: number = 130;
 
   colorScheme: Color = {

@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {firstValueFrom, Observable, of, Subscription} from 'rxjs';
+import {filter, firstValueFrom, Observable, of, Subscription} from 'rxjs';
 import { Router } from '@angular/router';
 import { OlympicService } from 'src/app/core/services/olympic.service';
 import {Olympic} from "../../core/models/Olympic";
@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.chartDataSubscribtion = this.olympics$.subscribe(olympics => {
       this.chartData = this.convertOlympicsToChartData(olympics);
     });
-    await firstValueFrom(this.olympics$);
+    await firstValueFrom(this.olympics$.pipe(filter(data => data !== null && data !== undefined)));
     this.isLoading = false;
   }
 
